@@ -148,7 +148,9 @@ const Items = ({ searchTerm = '' }) => {
                           
                           <Image.PreviewGroup>
                             {images.map((img, i) => {
-  const secureImg = img.replace(/^http:\/\//i, 'https://');
+  const secureUrl = img.startsWith('http://')
+    ? img.replace('http://', 'https://')
+    : img;
   return (
     <Image
       key={i}
