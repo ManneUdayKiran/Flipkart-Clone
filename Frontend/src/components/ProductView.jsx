@@ -53,7 +53,7 @@ const ProductView = () => {
           style={{ width: 480 }}
           cover={
             <Image
-              src={images[0]}
+               src={images[0]?.replace(/^http:\/\//i, 'https://')}
               alt={product.product_name}
               height={440}
               width={450}

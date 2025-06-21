@@ -147,18 +147,20 @@ const Items = ({ searchTerm = '' }) => {
                         <Carousel autoplay={true}  dotPosition='left'>
                           
                           <Image.PreviewGroup>
-                            {images.map((img, i) => (
-                              
-                              <Image
-                              key={i}
-                                src={img}
-                                alt={item.product_name}
-                                width="100%"
-                                height="300px"
-                                style={{ objectFit: 'contain' }}
-                                className='p-2'
-                              />
-                            ))}
+                            {images.map((img, i) => {
+  const secureImg = img.replace(/^http:\/\//i, 'https://');
+  return (
+    <Image
+      key={i}
+      src={secureImg}
+      alt={item.product_name}
+      width="100%"
+      height="300px"
+      style={{ objectFit: 'contain' }}
+      className='p-2'
+    />
+  );
+})}
                           </Image.PreviewGroup>
                         </Carousel>
                       </div>
