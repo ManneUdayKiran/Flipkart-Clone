@@ -154,7 +154,7 @@ const Items = ({ searchTerm = '' }) => {
   return (
     <Image
       key={i}
-      src={secureImg}
+      src={secureUrl}
       alt={item.product_name}
       width="100%"
       height="300px"
