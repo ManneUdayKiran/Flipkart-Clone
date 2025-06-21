@@ -26,22 +26,23 @@ const NavItems = () => {
       borderRadius: '0px',
      }}>
     <Flex justify="space-around" align="middle" style={{ backgroundColor: 'white', padding: '10px 0' }}>
-      <a href="/electronics" style={{ textDecoration: 'none', color: 'black' }}> <div><img  height={70} width={150} src="electronics.png" alt="" /></div> Electronics</a>
-        <a href="/fashion" style={{ textAlign:'center', textDecoration: 'none', color: 'black' }}><div><img  height={70} width={200} src="fashion.jpg" alt="" /></div>Fashion</a>
-        <Home_kitchen/>
+      <a href='/products?search=electronics'  style={{ textDecoration: 'none', color: 'black' }}> <div><img  height={70} width={150} src="electronics.png" alt="" /></div> Electronics</a>
+        <a href="/products?search=fashion" style={{ textAlign:'center', textDecoration: 'none', color: 'black' }}><div><img  height={70} width={200} src="fashion.jpg" alt="" /></div>Fashion</a>
+        <a href="/products?search=kitchen" style={{ textAlign:'center', textDecoration: 'none', color: 'black' }}><div><img  height={70} width={200} src="home_appliances.jpg" alt="" /></div>Home Appliances</a>
        
-        <a href="/books" style={{textAlign:'center', textDecoration: 'none', color: 'black' }}><div><img  height={70} width={150} src="books.jpg" alt="" /></div>Books</a>
-        <a href="/beauty-products" style={{ textDecoration: 'none', color: 'black' }}><div><img  height={70} width={150} src="beauty_products.webp" alt="" /></div>Beauty Products</a>
-        <a href="/sports" style={{textAlign:'center', textDecoration: 'none', color: 'black' }}><div><img  height={70} width={150} src="sports.cms" alt="" /></div>Toys</a>
+       
+        <a href="/products?search=books" style={{textAlign:'center', textDecoration: 'none', color: 'black' }}><div><img  height={70} width={150} src="books.jpg" alt="" /></div>Books</a>
+        <a href="products?search=/beauty-products" style={{ textDecoration: 'none', color: 'black' }}><div><img  height={70} width={150} src="beauty_products.webp" alt="" /></div>Beauty Products</a>
+        <a href="/products?search=sports" style={{textAlign:'center', textDecoration: 'none', color: 'black' }}><div><img  height={70} width={150} src="sports.cms" alt="" /></div>Toys</a>
         <div>
             <img  height={70} width={70} src='Tea.webp'/> <div>
-            <a href="/grocery" style={{textAlign:'center', textDecoration: 'none', color: 'black' }}>  Grocery</a>
+            <a href="/products?search=grocery" style={{textAlign:'center', textDecoration: 'none', color: 'black' }}>  Grocery</a>
 
 
             </div>
 
         </div>
-        <a href="/health" style={{textAlign:'center', textDecoration: 'none', color: 'black' }}><div><img  height={70} width={150} src="health.jpeg" alt="" /></div>Health</a>
+        <a href="/products?search=health" style={{textAlign:'center', textDecoration: 'none', color: 'black' }}><div><img  height={70} width={150} src="health.jpeg" alt="" /></div>Health</a>
     </Flex>
     
     </div>

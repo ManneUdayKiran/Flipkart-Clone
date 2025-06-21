@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { Dropdown, Button } from 'antd';
+import { Dropdown, Button, Avatar } from 'antd';
 import { DownCircleFilled, DownOutlined,GiftOutlined,HeartOutlined,SearchOutlined } from '@ant-design/icons';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
@@ -16,6 +16,9 @@ import { Link } from 'react-router-dom';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 import Fuse from 'fuse.js';
+import { Badge } from 'antd';
+import { useCart } from '../context/CartContext'; // Adjust import based on your app
+import ShoppingCartOutlined from '@ant-design/icons';
 
 import '../App.css'
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
@@ -25,7 +28,8 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import Categorys from './Categorys';
-
+import CartIcon from './CartIcon';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 // const searchItems = [
 //   'Mobiles',
 //   'Laptops',
@@ -84,6 +88,12 @@ const NavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === '/' || location.pathname === '/home';
+  // console.log(user);
+  const isViewCart = location.pathname === '/viewcart';
+    const isProduct = location.pathname.startsWith('/product/');
+
+
+const { cartItems } = useCart();
 
     // Load products for search
 
@@ -121,13 +131,16 @@ const NavBar = () => {
     return () => unsubscribe();
   }, []);
 
+
   const handleLogout = async () => {
     await signOut(auth);
   };
   const handleSearch = (event, value) => {
     if (value) {
       navigate(`/products?search=${encodeURIComponent(value)}`);
+      console.log(`Searching for: ${value}`);
     }
+    
   };
   const accountMenu = [
     {
@@ -174,13 +187,24 @@ Rewards</a>,    },
     <Navbar bg="" expand="lg" className=" " style={{ backgroundColor: isHome ? 'white' : 'rgb(40, 115, 240)', boxShadow: isHome ? 'none' : '0 2px 4px rgba(0,0,0,0.1)' }}>
       <Container>
         <Navbar.Brand style={{color: isHome ? 'white' : 'white' }} className='brand' href="/">
+        {isHome?
+        
           <img
-            src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg"
+            src= "https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg"
             width="160"
             height="40"
             alt="Flipkart"
             
-            />
+            />:
+            <img
+            src= "image.png"
+            width="120"
+            height="30"
+            alt="Flipkart"
+            className='mx-5'
+            
+            />}
+            
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="flipkart-navbar" />
@@ -222,21 +246,39 @@ Rewards</a>,    },
             
           </div>
 
-          <Nav className=" align-items-center gap-5">
-            <Dropdown arrow={true}  className='p-0' menu={{ items:user?accountMenu: loginMenu }} placement="top">
-              <Button type="" color='blue' size="small">
+          <Nav className="align-items-center gap-5">
+            <Dropdown  arrow={true}  className='p-0' menu={{ items:user?accountMenu: loginMenu }} placement="top">
+              <Button  className={isHome?"p-3":""} type="" color='blue' size="small">
                   
-               {user ?<Nav.Link style={{color:isHome?'black':'white',fontSize:'1rem',backgroundColor:isHome?'':'rgb(40, 115, 240)',padding:isHome?'30px 30px 30px 30px':'' }} href="#">{isHome?<AccountCircleOutlinedIcon/>:<DownOutlined/>}<span className='m-1'>Account</span></Nav.Link>   :
+               {user ?<Nav.Link className='' style={{color:isHome?'black':'white',fontSize:'1rem',backgroundColor:isHome?'':'rgb(40, 115, 240)',padding:isHome?'30px 0px 30px 0px':'' }} href="#">{isHome? <Avatar src={user?.photoURL || <AccountCircleOutlinedIcon/> }  style={{ backgroundColor: 'rgb(40, 115, 240)' }} size="small" icon={<AccountBoxOutlinedIcon />} /> : <AccountBoxOutlinedIcon />}<span className='mx-2'>{user.displayName || user.email}</span></Nav.Link>   :
                <>
-               <Nav.Link style={{color:isHome?'black':'white',fontSize:'1rem',backgroundColor:isHome?'white':'rgb(40, 115, 240)' }} href='/login'>Login  <DownOutlined /></Nav.Link>
+               <Nav.Link style={{color:isHome?'black':'white',fontSize:'1rem',backgroundColor:isHome?'':'rgb(40, 115, 240)' }} href='/login'>Login  <DownOutlined /></Nav.Link>
                </>}
                 
               </Button>
             </Dropdown>
-          
+          {isViewCart?"":
+          <>
+              <Nav.Link  style={{ color:isHome? 'black':'white',fontSize:'1rem'}} href="#">
+                 {/* <Badge count={cartItems.length} showZero={false} offset={[0, 0]}>
+
+                <ShoppingCartOutlinedIcon  />  
+                 
+                 </Badge> */}
+                 {/* <Button style={{color:isHome? 'black':'white'}} className='mx-0' type='text'  onClick={() => navigate('/viewcart')}>
+  <CartIcon/>
+</Button> */}
+ <Badge  count={cartItems.length} showZero={false} offset={[0, 0]}>
+    {isProduct?<ShoppingCartOutlinedIcon />:<ShoppingCartOutlinedIcon />}  
+    </Badge>
+
+                 
+               <Link style={{textDecoration:'none',color:isHome? 'black':'white'}} to='/viewcart' > Cart</Link>  </Nav.Link>
+              <Nav.Link style={{color:isHome?'black':'white'}} href="#"><StorefrontOutlinedIcon/>Become a Seller</Nav.Link>
+          </>
+  
+          }
             
-            <Nav.Link style={{ color:isHome? 'black':'white',fontSize:'1rem'}} href="#"><ShoppingCartOutlinedIcon/>Cart</Nav.Link>
-            <Nav.Link style={{color:isHome?'black':'white'}} href="#"><StorefrontOutlinedIcon/>Become a Seller</Nav.Link>
 
             {/* Ant Design Login Button Dropdown */}
           </Nav>

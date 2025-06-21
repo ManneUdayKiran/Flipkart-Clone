@@ -6,7 +6,7 @@ const UserPage = () => {
   return (
     <div>
       {/* <NavItems/> */}
-      <Categorys/>
+      {/* <Categorys/> */}
         
         
 

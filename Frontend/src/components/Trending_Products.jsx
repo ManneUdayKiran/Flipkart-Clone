@@ -52,11 +52,13 @@ const Trending_Products = () => {
       <h2 className='text-center m-4'>Trending Products</h2>
       <div className='container d-flex flex-wrap flex-column flex-fill h-75' style={{ marginTop: '15px', marginBottom: '20px' }}>
         <div className='row'>
-          <ProductCard image="saree.jpg" title="Sarees" price={500} />
-          <ProductCard image="trending2.webp" title="Western Dress" price={500} />
+          <ProductCard href='/products?search=saree'  image="saree.jpg" title="Sarees" price={500} />
+        
+          <ProductCard image="trending2.webp" title="Dress" price={500} />
+          
           <ProductCard image="shoes.jpg" title="Shoes" price={500} />
-          <ProductCard image="heels.jpg" title="Womens Heels" price={500} />
-          <ProductCard image="shirt.png" title="Mens Shirts" price={500} />
+          <ProductCard image="heels.jpg" title="Heels" price={500} />
+          <ProductCard image="shirt.png" title="Shirts" price={500} />
           <ProductCard image="NIKE.webp" title="Top Brands" price={500} />
         </div>
       </div>
@@ -65,12 +67,12 @@ const Trending_Products = () => {
 
       <div className='container d-flex flex-wrap flex-column flex-fill h-75' style={{ marginTop: '15px', marginBottom: '20px' }}>
         <div className='row'>
-          <ProductCard image="car.jpg" title="Sarees" price={500} />
-          <ProductCard image="toys.jpg" title="Western Dress" price={500} />
-          <ProductCard image="health2.jpg" title="Shoes" price={500} />
-          <ProductCard image="1.webp" title="Womens Heels" price={500} />
-          <ProductCard image="makeup.jpg" title="Mens Shirts" price={500} />
-          <ProductCard image="baby.jpg" title="Top Brands" price={500} />
+          <ProductCard image="car.jpg" title="CarParts" price={500} />
+          <ProductCard image="toys.jpg" title="Toys" price={500} />
+          <ProductCard image="health2.jpg" title="Vitamins" price={500} />
+          <ProductCard image="1.webp" title="Bicycle" price={500} />
+          <ProductCard image="makeup.jpg" title="Makeup " price={500} />
+          <ProductCard image="baby.jpg" title="sumo baby walker" price={500} />
         </div>
       </div>
     </>

@@ -17,11 +17,11 @@ const items = [
 ]
 const Categorys = () => {
   return (
-    <div className='container-fluid m-0 p-0'>
+    <div style={{borderBottom:'1px solid #eff1f4',boxShadow:' 0px  2px 4px rgba(0,0,0,0.1)'}} className='container-fluid m-0 p-0'>
         <div className='container-fluid d-flex gap-5 bg-white p-2 flex-wrap justify-content-center align-items-center' >
-            <Dropdown  className='text-black' placement='top' arrow={true} menu={{ items }}>
+            <Dropdown   className='text-black' placement='top' arrow={true} menu={{ items }}>
     <a onClick={e => e.preventDefault()}>
-      <Space>
+      <Space  >
         Electronics
         <DownOutlined />
       </Space>

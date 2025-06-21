@@ -13,9 +13,9 @@ const Products = () => {
 
 
   return (
-    <div className="container mt-4">
-      <h3>Results for: {searchQuery}</h3> 
+    <div style={{backgroundColor:'whitesmoke'}} className="container-fluid mt-0">
       <div>
+
         <Items searchTerm={searchQuery} />
         </div>  
       
